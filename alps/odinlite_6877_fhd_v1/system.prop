@@ -1,0 +1,5 @@
+ro.postinstall.fstab.prefix=/system
+ro.crypto.volume.filenames_mode=aes-256-cts
+ro.sf.lcd_density=369
+ro.mediatek.platform=MT6877
+ro.hardware=mt6877

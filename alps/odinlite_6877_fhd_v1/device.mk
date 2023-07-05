@@ -6,6 +6,10 @@
 #
 
 LOCAL_PATH := device/alps/odinlite_6877_fhd_v1
+
+# Dynamic
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -21,15 +25,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     bootctrl.mt6877
 
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.mt6877 \
-    libgptutils \
-    libz \
-    libcutils
-
 PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
     update_engine \
     update_verifier \
     update_engine_sideload
+
+# fastbootd
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    fastbootd

@@ -4,6 +4,8 @@
 
 Guide: https://unofficialtwrp.com/build-compile-twrp-recovery/
 
+Tip: If you use WSL2 on windows avoid performin commands in /mnt dirrectory, otherwise it will hugly decrease your performance.
+
 ```sh
 mkdir twrp
 cd twrp
@@ -11,8 +13,8 @@ cd twrp
 
 ```sh
 repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11
-# This download can take aroud 3 to 4 hours so be patient.
-repo sync
+# This download can take aroud 2 to 3 hours so be patient( in my case it was around 15 min on the second try, because at the begining I have accidently used /mnt directory ||BRUH|| ).
+repo sync -c -j 12 --force-sync --no-clone-bundle --no-tags
 ```
 
 ```sh
@@ -23,6 +25,10 @@ lunch twrp_odinlite_6877_fhd_v1-eng
 # We are building boot image, because ayn odin lite uses A/B partition scheme and does not have separete partition for recovery. Because, of that we need to bundle it with boot.
 mka bootimage
 ```
+
+## Now you can flash `boot.img`
+
+It will be located at out/target/product/odinlite_6877_fhd_v1/boot.img
 
 # My attempts to create a TWRP device tree
 
