@@ -1,6 +1,28 @@
 # TWRP tree
 
-TODO
+## How to build twrp
+
+Guide: https://unofficialtwrp.com/build-compile-twrp-recovery/
+
+```sh
+mkdir twrp
+cd twrp
+```
+
+```sh
+repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11
+# This download can take aroud 3 to 4 hours so be patient.
+repo sync
+```
+
+```sh
+cd twrp
+export ALLOW_MISSING_DEPENDENCIES=true
+. build/envsetup.sh
+lunch twrp_odinlite_6877_fhd_v1-eng
+# We are building boot image, because ayn odin lite uses A/B partition scheme and does not have separete partition for recovery. Because, of that we need to bundle it with boot.
+mka bootimage
+```
 
 # My attempts to create a TWRP device tree
 
